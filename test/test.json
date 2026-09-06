@@ -1,0 +1,49 @@
+[
+    {
+        "role": "system",
+        "content": "You are an agent, your goal is to achieve user's goal using the tools allowed ",
+        "tool": ["web_search", "extract_text"]
+    },
+    {
+        "role": "user",
+        "content": ["Find the three most recent talks about agentic AI at PyData, summarize", 
+                    "each in two sentences, and draft a short LinkedIn post about it."]
+    },
+    {
+        "role": "assistant",
+        "tool_call": {
+            "name": "web_search",
+            "args": {
+                "query": "Agentic AI talks PyData"
+            }
+            }
+    },
+    {
+        "role": "tool",
+        "name": "web_search",
+        "content": [
+            {"date": "...", "title": "...", "url": "..."},
+            {"date": "...", "title": "...", "url": "..."},
+            {"date": "...", "title": "...", "url": "..."}
+        ]
+    },
+    {
+        "role": "assistant",
+        "tool_call": {
+            "name": "extract_text",
+            "args": {
+                "url": "http://...",
+                "format": "markdown"
+                }
+        }
+    },
+    {
+        "role": "tool",
+        "name": "extract_text",
+        "content": "# summerize into two sentences..."
+    },
+    {
+        "role": "assistant",
+        "content": "Summerize 1: ... \n\nSummerize 2: ... \n\nSummerize 3: ... \n\nLinkedIN post: ..."
+    }
+]
